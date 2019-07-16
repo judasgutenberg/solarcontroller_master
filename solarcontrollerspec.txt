@@ -1,0 +1,47 @@
+wire/pin guide
+
+pin 5 pinMode(3, INPUT); //circulator pump reader
+pin 18 pinMode(12, INPUT); //boiler reader
+pin 19 pinMode(13, OUTPUT); //season mode light/bypass hot water tank thermostat
+pin 14 pinMode(8, OUTPUT); //hot water sufficiency output
+pin 15 pinMode(9, OUTPUT); //slab sufficiency output
+pin 6 pinMode(4, OUTPUT); //used for lighting a green LED indicating Solar Panel temperature being displayed
+pin 11 pinMode(5, OUTPUT); //used for lighting a green LED indicating Basement pipe (from panel) temperature being displayed
+pin 12 pinMode(6, OUTPUT); //used for lighting a green LED indicating after heat sink temperature being displayed
+pin 13 pinMode(7, OUTPUT); //used for lighting a green LED indicating ambient basement temperature being displayed
+pin 13 pin 7 is also used for reading the season button.
+------
+pin 16 analogWrite(10,   norm255(paneltemp));
+------
+pin 23 paneltemp=averageRead(0,0);
+pin 24 basementtemp=averageRead(1,1);
+pin 28 old afterloadtemp=averageRead(5,0);
+pin 27 old ambienttemp=averageRead(4,0);
+pin 25 hotwatertemp=averageRead(2,3); 
+pin 26 outsidetemp=averageRead(3,0);
+------
+unused:
+pin 4 --digital 2
+pin 17 -- pwn digital 11
+------
+whiteblack --23 analog0 ard2	after load temperature
+whitered -24 analog1 ard2  	ambient temperature
+red 25 analog2 ard2 f2
+redblack 26 analog3 ard2  f3	
+------
+redpink--26 analog3 ard1 f4	outside temperature
+orange 25 analog2 ard1 f5	hot water tank temperature
+blackorange 24 analog1 ard1 f6  basement temperature
+redorange 23 analog0 ard1 f7   	panel temperature
+------
+white -- messy ground
+black green good ground
+green -30 volts
+------
+bluewhite --hotwater sufficieny out
+purpleblack -slab sufficiency
+------
+greenwhite --boiler reader
+blackwhite --circ pump reader
+------
+blue -- season out
